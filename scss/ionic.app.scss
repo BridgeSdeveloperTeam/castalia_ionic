@@ -1,0 +1,183 @@
+/*
+To customize the look and feel of Ionic, you can override the variables
+in ionic's _variables.scss file.
+
+For example, you might change some of the default colors:
+
+$light:                           #fff !default;
+$stable:                          #f8f8f8 !default;
+$positive:                        #387ef5 !default;
+$calm:                            #11c1f3 !default;
+$balanced:                        #33cd5f !default;
+$energized:                       #ffc900 !default;
+$assertive:                       #e037A3 !default;
+$royal:                           #886aea !default;
+$dark:                            #444 !default;
+*/
+
+// The path for our ionicons font files, relative to the built CSS in www/css
+$ionicons-font-path: "../lib/ionic/fonts" !default;
+
+//Castalia Pink
+$assertive:                       #E037A3 !default;
+
+//Font for ionic-material
+$RobotoDraftFontPath: "../lib/robotodraft/fonts"; // REMINDER: edit as appropriate!
+$RobotoDraftFontName: "RobotoDraft";
+$RobotoDraftFontVersion: "1.0.0";
+
+@import "www/lib/robotodraft/sass/robotodraft.scss"; 
+
+// Include all of Ionic
+@import "www/lib/ionic/scss/ionic";
+
+
+p {
+	font-size:16px;
+}
+
+//Login
+.form-container {
+
+	width: 100%;
+	max-width:500px !important;
+    height: 100%;
+    padding:0 20px;
+	
+    left:0; right:0;
+    top:0; bottom:0;
+	margin:auto;
+	
+	overflow:auto;
+
+	input {
+		width:100%;
+		border-bottom: 1px solid #d3d3d3 !important;
+	    padding: 0 15px;
+	    margin: 0 15px;
+	}
+}
+
+.login-logo {
+	height: 50px;
+	min-height: 40px;
+}
+
+.center-text {
+	text-align:center;
+}
+
+.button-container-padding {
+	padding:0 25px;
+}
+
+.button-round {
+	border-radius:40px;
+}
+
+.inline-container {
+	display:flex;
+	align-items:center;
+	justify-content:center;
+}
+
+.small-icon {
+	width:50px;
+	height: 100%;
+}
+
+.underline-text {
+	text-decoration: underline;
+}
+
+//Register
+.register-container {
+
+	input {
+		margin:0 0 15px 0;
+	}
+}
+
+.plus-button {
+	width:50px !important;
+	margin:0 0 15px 0;
+}
+
+//Menu
+.menu-cell-big {
+	height: 140px;
+}
+
+.menu-cell-small {
+	height: 100px;
+
+	.plus-button {
+		margin:0 0 5px 0;
+	}
+
+	p {
+		margin:0;
+	}
+}
+
+
+
+.landing-container {
+
+	width: 100%;
+	max-width:500px !important;
+    height: 100%;
+
+    left:0; right:0;
+    top:0; bottom:0;
+	margin:auto;
+
+	p {
+		color:white;
+		font-size:18px;
+	}
+
+	.col, .row {
+		padding:0;
+	}
+}
+
+.full-width-img {
+	width:100%;
+	height: 100%;
+	max-height: 230px;
+}
+
+.absolute-position {
+	position:absolute;
+	top:0;
+	bottom:0;
+	left:0;
+	right: 0;
+}
+
+
+.castalia-background {
+	background-color:$assertive;
+}
+
+.vertical-items {
+	display:flex;
+	flex-direction:column;
+	align-items:center;
+
+}
+
+.product-list {
+
+	height: 100%;
+	text-align: center;
+	h3, p {
+		color: #606060;
+	}
+}
+
+.item-list.item.activated{
+  background-color: #fff;
+}
+

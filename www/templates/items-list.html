@@ -1,0 +1,39 @@
+<ion-view view-title="{{viewTitle}}">
+	<ion-nav-buttons side="right">
+    	<button class="button button-icon button-clear"  ng-click="switchView()">
+    		<i class="icon ion-ios-list-outline" ng-hide="listView"></i>
+    		<i class="icon ion-grid" ng-show="listView"></i>
+    	</button>
+    </ion-nav-buttons>
+	<ion-content class="form-container" style="padding:40px 1px 0 1px;">
+		
+		<div ng-show="listView">
+			<div ng-repeat="item in products">
+				<div class="row product-list" ng-click="rowClicked($index)">
+					<div class="col col-50" style="margin:auto">
+						<img ng-src="{{item.imgSrc}}" class="full-width-img">
+					</div>
+					<div class="col col-50" style="margin:auto">
+						<div class="vertical-items" style="align-items:initial">
+							<h3>{{item.name}}</h2>
+							<p>{{item.description}}</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>	 
+	
+		<div ng-hide="listView">
+			<ion-item class="item-list"collection-repeat="item in products" item-width="50%" item-height="250px" ng-click="rowClicked($index)">
+			    
+			    <div class="product-list">
+			    	<img ng-src="{{item.imgSrc}}" style="height:80%">
+
+					<h3>{{item.name}}</h2>
+					<p>{{item.description}}</p>
+			    </div>
+			</ion-item>
+		</div>
+		
+	</ion-content>
+</ion-view>

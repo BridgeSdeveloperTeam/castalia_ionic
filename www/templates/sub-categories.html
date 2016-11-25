@@ -1,0 +1,54 @@
+<ion-view view-title="{{viewTitle}}">
+	<ion-content>
+		<div class="landing-container">
+			<img ng-src="{{bannerImage}}" style="width:100%; margin-bottom:-5px;">
+
+			<div ng-repeat="item in categories">
+				<div ng-if="$even">
+					<div class="row castalia-background menu-cell-small" style="margin-top:1px" ng-click="rowClicked($index)">
+					
+						<div class="col col-75" style="position:relative">
+							<img ng-src="{{item.imgSrc}}" class="full-width-img absolute-position">
+						</div>
+					    <div class="col" style="margin:auto;">
+					    	<div class="row">
+					    		<div class="col col-center center-text">
+					    			<img src="img/plus_button.png" class="plus-button">
+					    		</div>
+					    		
+					    	</div>
+					    	<div class="row">
+					    		<div class="col col-center center-text">
+					    			<p>{{item.name}}</p>
+					    		</div>
+					    	</div>
+					    </div>
+					</div>
+				</div>
+
+				<div ng-if="$odd">
+					<div class="row castalia-background menu-cell-small" style="margin-top:1px" ng-click="rowClicked($index)">
+						<div class="col" style="margin:auto;">
+					    	<div class="row">
+					    		<div class="col col-center center-text">
+					    			<img src="img/plus_button.png" class="plus-button">
+					    		</div>
+					    		
+					    	</div>
+					    	<div class="row">
+					    		<div class="col col-center center-text">
+					    			<p>{{item.name}}</p>
+					    		</div>
+					    	</div>
+					    </div>
+					    <div class="col col-75" style="position:relative">
+							<img ng-src="{{item.imgSrc}}" class="full-width-img absolute-position">
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+	</ion-content>
+</ion-view>

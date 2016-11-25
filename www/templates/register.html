@@ -1,0 +1,26 @@
+<ion-view view-title="Inicio de sesión">
+  <ion-content>
+    <form ng-submit="doRegister()">
+
+    	<div class="form-container register-container">
+    		<img src="img/castalia_logo.png" style="max-width:100%;">
+    		</br>
+    		</br>
+			<input type="text" placeholder="Nombres" ng-model="registerData.username">
+			<input type="text" placeholder="Apellidos" ng-model="registerData.username">
+			<input type="text" placeholder="Estado" ng-model="registerData.username">
+			<input type="text" placeholder="Código Postal" ng-model="registerData.username">
+			<input type="text" placeholder="Número telefónico" ng-model="registerData.username">
+			<input type="email" placeholder="Email" ng-model="registerData.username">
+			<input type="password" placeholder="Password" ng-model="registerData.username">
+
+			</br>
+    		</br>
+
+			<div class="button-container-padding">
+	          <button type="submit" class="button button-margin button-block button-assertive button-round">Registrarse</button>
+	        </div>
+		</div>
+    </form>
+  </ion-content>
+</ion-view>

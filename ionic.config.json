@@ -1,0 +1,13 @@
+{
+  "name": "castalia",
+  "app_id": "c695a465",
+  "gulpStartupTasks": [
+    "sass",
+    "watch"
+  ],
+  "watchPatterns": [
+    "www/**/*",
+    "!www/lib/**/*",
+    "!www/**/*.map"
+  ]
+}
