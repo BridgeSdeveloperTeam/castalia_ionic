@@ -79,4 +79,5 @@
     <plugin name="cordova-plugin-googleplus" spec="~5.1.1">
         <variable name="REVERSED_CLIENT_ID" value="com.googleusercontent.apps.544114062620-k8htiucvhb7gi283937aftdg3rmu2r16" />
     </plugin>
+    <plugin name="cordova-plugin-google-analytics" spec="~1.7.2" />
 </widget>

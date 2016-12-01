@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'ionic-material'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.RESTModule', 'ionic-material', 'starter.CatalogIDModule'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -19,6 +19,23 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-material'])
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
+  });
+})
+//Google analytics
+.run(function($rootScope, $location, $window, $ionicPlatform) {
+  
+  $ionicPlatform.ready(function() {
+    if($window.ga) {
+      $window.ga.startTrackerWithId('UA-88011572-1');
+    };
+    
+  });
+
+  $rootScope.$on('$stateChangeSuccess', function (event) {
+    if($window.ga) {
+      $window.ga.trackView($location.path());
+    }
+    
   });
 })
 .config(function($ionicConfigProvider) {
@@ -46,16 +63,32 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-material'])
     }
   })
   .state('app.register', {
-    url: '/register',
+    url: '/registro',
     views: {
       'menuContent': {
         templateUrl: 'templates/register.html',
-       
+        controller: 'RegisterCtrl',
+        resolve: { isMember: function() {
+          return false;
+        }}
+      }
+    }
+  })
+  .state('app.register-member', {
+    url: '/registro-socio',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/register.html',
+        controller: 'RegisterCtrl',
+        resolve: { isMember: function() {
+          return true;
+        }}
+    
       }
     }
   })
   .state('app.landing', {
-    url: '/landing',
+    url: '/menu',
     views: {
       'menuContent': {
         templateUrl: 'templates/landing.html',
@@ -65,7 +98,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-material'])
   })
 
   .state('app.shopping', {
-    url: '/shopping',
+    url: '/compras',
     views: {
       'menuContent': {
         templateUrl: 'templates/shopping-menu.html',
@@ -75,38 +108,42 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-material'])
   })
 
   .state('app.catalog', {
-    url: '/catalog',
+    url: '/catalogo',
     views: {
       'menuContent': {
-        templateUrl: 'templates/catalog.html'
+        templateUrl: 'templates/catalog.html',
+        controller: 'CatalogCtrl'
       }
     }
   })
 
 //Menus
   .state('app.castalia-categories', {
-    url: '/castalia-categories',
+    url: '/castalia-categorias',
     views: {
       'menuContent': {
-        templateUrl: 'templates/castalia-categories.html'
+        templateUrl: 'templates/castalia-categories.html',
+        controller: 'SubCatalogCtrl'
       }
     }
   })
 
   .state('app.trevo-categories', {
-    url: '/trevo-categories',
+    url: '/trevo-categorias',
     views: {
       'menuContent': {
-        templateUrl: 'templates/trevo-categories.html'
+        templateUrl: 'templates/trevo-categories.html',
+        controller: 'SubCatalogCtrl'
       }
     }
   })
 
   .state('app.sales-categories', {
-    url: '/sales-categories',
+    url: '/ofertas-categorias',
     views: {
       'menuContent': {
-        templateUrl: 'templates/sales-categories.html'
+        templateUrl: 'templates/sales-categories.html',
+        controller: 'SubCatalogCtrl'
       }
     }
   })
@@ -114,7 +151,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-material'])
   //Dama
 
   .state('app.castalia-dame', {
-    url: '/castalia-dame',
+    url: '/castalia-dama',
     views: {
       'menuContent': {
         templateUrl: 'templates/sub-categories.html',
@@ -127,7 +164,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-material'])
   })
 
   .state('app.sales-dame', {
-    url: '/sales-dame',
+    url: '/ofertas-dama',
     views: {
       'menuContent': {
         templateUrl: 'templates/sub-categories.html',
@@ -141,13 +178,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-material'])
 
   //Product List
   .state('app.product-list', {
-    url: '/product-list',
+    url: '/lista-productos/:idCatalogo/:idLinea/:idConcepto',
+    cache: false,
     views: {
       'menuContent': {
         templateUrl: 'templates/items-list.html',
         controller: 'ProductsCtrl',
-        resolve: { productList: function() {
-          var products = [
+        resolve: { productList: ['$stateParams', 'RESTCatalogService', function($stateParams, RESTCatalogService) {
+          return RESTCatalogService.getProductList($stateParams);
+          /*var products = [
               {'imgSrc': 'img/boot.png', 'name': 'Bota dama', 'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'},
               {'imgSrc': 'img/boot.png', 'name': 'Bota dama', 'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'},
               {'imgSrc': 'img/boot.png', 'name': 'Bota dama', 'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'},
@@ -158,18 +197,37 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-material'])
               {'imgSrc': 'img/boot.png', 'name': 'Bota dama', 'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'},
               {'imgSrc': 'img/boot.png', 'name': 'Bota dama', 'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'}
           ];
-          return products;
-        }}
+          return products;*/
+        } ] }
       }
     }
   })
 
   .state('app.product-detail', {
-    url: '/product-detail',
+    url: '/detalle-producto',
+    cache: false,
     views: {
       'menuContent': {
         templateUrl: 'templates/product-detail.html',
         controller: 'ProductDetailCtrl'
+      }
+    }
+  })
+
+  .state('app.help', {
+    url: '/ayuda',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/help.html'
+      }
+    }
+  })
+
+  .state('app.profile', {
+    url: '/perfil',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/profile.html'
       }
     }
   })

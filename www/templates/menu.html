@@ -5,7 +5,7 @@
       </ion-nav-back-button>
 
       <ion-nav-buttons side="left">
-        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left" ng-show="showMenuButton">
         </button>
       </ion-nav-buttons>
     </ion-nav-bar>
@@ -18,22 +18,25 @@
     </ion-header-bar>
     <ion-content>
       <ion-list>
-        <ion-item menu-close>
+        <ion-item menu-close ui-sref="app.profile">
           Perfil
         </ion-item>
-        <ion-item menu-close href="#/app/landing">
+        <ion-item menu-close ui-sref="app.landing">
           Menú
         </ion-item>
-        <ion-item menu-close href="#/app/shopping">
-          Comprar
-        </ion-item>
-        <ion-item menu-close>
-          Registro de socios
-        </ion-item>
-        <ion-item menu-close href="#/app/catalog">
+        <ion-item menu-close ui-sref="app.catalog">
           Catálogo
         </ion-item>
-        <ion-item menu-close href="#/app/login">
+        <ion-item menu-close ui-sref="app.shopping">
+          Comprar
+        </ion-item>
+        <ion-item menu-close ui-sref="app.register-member">
+          Registro de socios
+        </ion-item>
+        <ion-item menu-close ui-sref="app.help">
+          Ayuda
+        </ion-item>
+        <ion-item menu-close ng-click="logout()">
           Cerrar sesión
         </ion-item>
       </ion-list>

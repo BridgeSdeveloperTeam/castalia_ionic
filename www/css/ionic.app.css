@@ -10008,3 +10008,13 @@ p {
 
 .item-list.item.activated {
   background-color: #fff; }
+
+.item-list-container {
+  width: 100%;
+  max-width: 500px !important;
+  padding: 40px 1px 0 1px;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto; }

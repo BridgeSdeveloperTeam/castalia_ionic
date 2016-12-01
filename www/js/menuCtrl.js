@@ -1,13 +1,28 @@
 angular.module('starter.controllers', [])
 
-.controller('MenuCtrl', ['$scope', function($scope) {
+.controller('MenuCtrl', ['$scope', '$rootScope', '$ionicSideMenuDelegate', '$window', '$state','$ionicHistory',
+	function($scope, $rootScope, $ionicSideMenuDelegate, $window, $state, $ionicHistory) {
+  	
 
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
-  
-  
+
+  	//Disable side menu in login 
+  	$rootScope.$on("$ionicView.beforeEnter", function(event, data){
+	   // handle event
+	   if(data.stateId == "app.login") {
+	   		$ionicSideMenuDelegate.canDragContent(false);
+	   		$scope.showMenuButton = false;
+	   }else {
+	   		$ionicSideMenuDelegate.canDragContent(true);
+	   		$scope.showMenuButton = true;
+	   }
+	});
+
+  	$scope.logout = function() {
+  		$window.localStorage.removeItem("userID");
+  		$ionicHistory.nextViewOptions({
+			historyRoot: true,
+			disableBack:true
+		});	
+  		$state.go('app.login');
+  	};
 }]);

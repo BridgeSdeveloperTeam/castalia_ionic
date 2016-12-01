@@ -1,18 +1,18 @@
 <ion-view view-title="Inicio de sesión">
   <ion-content>
-    <form ng-submit="doLogin()">
+    <form name="loginForm" ng-submit="doLogin(loginForm)" novalidate>
 
       <div class="form-container">
         <img src="img/castalia_logo.png" style="max-width:100%;">
 
         <div class="inline-container">
           <img src="img/mail_icon.png" class="small-icon">
-          <input type="email" placeholder="Email" ng-model="loginData.username">
+          <input type="email" placeholder="Email" ng-model="loginData.email" required>
         </div>
 
         <div class="inline-container">
           <img src="img/pass_icon.png" class="small-icon">
-          <input type="password" placeholder="Contraseña" ng-model="loginData.password">
+          <input type="password" placeholder="Contraseña" ng-model="loginData.password" required>
         </div>
         </br>
         <div class="button-container-padding">

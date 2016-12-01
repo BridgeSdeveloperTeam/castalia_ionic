@@ -1,6 +1,7 @@
 angular.module('starter.controllers')
 
-.controller('DameCtrl', ['$scope', 'isSales', '$state', function($scope, isSales, $state) {
+.controller('DameCtrl', ['$scope', 'isSales', '$state', 'CatalogIDService', '$window',
+	function($scope, isSales, $state, CatalogIDService, $window) {
 
 	if(isSales) {
 		$scope.viewTitle = "Ofertas Dama"
@@ -36,10 +37,17 @@ angular.module('starter.controllers')
 
 	}
 
-	
-
 	$scope.rowClicked = function(index) {
-		$state.go('app.product-list');
+		$window.localStorage["conceptoID"] = CatalogIDService.getConceptIdForName($scope.categories[index].name.toLowerCase());
+	
+		$window.localStorage["lineaID"] = CatalogIDService.getLineaIdForName($scope.categories[index].name.toLowerCase());
+		
+		var params = {
+			idCatalogo: $window.localStorage["catalogoID"],
+			idLinea: $window.localStorage["lineaID"],
+			idConcepto: $window.localStorage["conceptoID"]
+		};
+		$state.go('app.product-list', params);
 
 	};
 

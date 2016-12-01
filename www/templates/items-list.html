@@ -5,32 +5,32 @@
     		<i class="icon ion-grid" ng-show="listView"></i>
     	</button>
     </ion-nav-buttons>
-	<ion-content class="form-container" style="padding:40px 1px 0 1px;">
+	<ion-content class="item-list-container">
 		
-		<div ng-show="listView">
+		<div ng-if="listView">
 			<div ng-repeat="item in products">
 				<div class="row product-list" ng-click="rowClicked($index)">
 					<div class="col col-50" style="margin:auto">
-						<img ng-src="{{item.imgSrc}}" class="full-width-img">
+						<img ng-src="http://castaliaapp.com/imagenes/{{item.imagen}}" class="full-width-img">
 					</div>
 					<div class="col col-50" style="margin:auto">
 						<div class="vertical-items" style="align-items:initial">
-							<h3>{{item.name}}</h2>
-							<p>{{item.description}}</p>
+							<h3>{{item.sku}}</h2>
+							<p>{{item.descripcion}}</p>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>	 
 	
-		<div ng-hide="listView">
+		<div ng-if="!listView">
 			<ion-item class="item-list"collection-repeat="item in products" item-width="50%" item-height="250px" ng-click="rowClicked($index)">
 			    
 			    <div class="product-list">
-			    	<img ng-src="{{item.imgSrc}}" style="height:80%">
+			    	<img ng-src="http://castaliaapp.com/imagenes/{{item.imagen}}" style="height:80%; width:100%;">
 
-					<h3>{{item.name}}</h2>
-					<p>{{item.description}}</p>
+					<h3>{{item.sku}}</h2>
+					<p>{{item.descripcion}}</p>
 			    </div>
 			</ion-item>
 		</div>

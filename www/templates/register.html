@@ -1,19 +1,19 @@
-<ion-view view-title="Inicio de sesión">
+<ion-view view-title="{{title}}">
   <ion-content>
-    <form ng-submit="doRegister()">
+    <form name="registerForm" novalidate ng-submit="doRegister(registerForm)">
 
     	<div class="form-container register-container">
     		<img src="img/castalia_logo.png" style="max-width:100%;">
     		</br>
     		</br>
-			<input type="text" placeholder="Nombres" ng-model="registerData.username">
-			<input type="text" placeholder="Apellidos" ng-model="registerData.username">
-			<input type="text" placeholder="Estado" ng-model="registerData.username">
-			<input type="text" placeholder="Código Postal" ng-model="registerData.username">
-			<input type="text" placeholder="Número telefónico" ng-model="registerData.username">
-			<input type="email" placeholder="Email" ng-model="registerData.username">
-			<input type="password" placeholder="Password" ng-model="registerData.username">
-
+			<input type="text" placeholder="Nombre" ng-model="registerData.nombre" required>
+			<input type="text" placeholder="Domicilio" ng-model="registerData.domicilio" required>
+			<input type="text" placeholder="Código Postal" ng-model="registerData.cp" required>
+			<input type="number" placeholder="Número telefónico" ng-model="registerData.telefono" required>
+			<input type="email" placeholder="Email" ng-model="registerData.email" required>
+			<div ng-if="!isMember">
+				<input type="password" placeholder="Password" ng-model="registerData.contra" required>
+			</div>
 			</br>
     		</br>
 

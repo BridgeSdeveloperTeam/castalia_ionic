@@ -1,12 +1,24 @@
 angular.module('starter.controllers')
 
-.controller('ProductsCtrl', ['$scope', 'productList', '$state', function($scope, productList, $state) {
+.controller('ProductsCtrl', ['$scope', 'productList', '$state', '$window',
+	function($scope, productList, $state, $window) {
 
-	$scope.viewTitle = "Zapato Dama";
+	$scope.viewTitle = "Productos";
 
-	$scope.products = productList;
+	var isSales = $window.localStorage["ofertas"] === "1";
+
+	$scope.products = productList.data[0].filter(function(item){
+		if(isSales) {
+			return item.oferta == "1";
+		}else {
+			return true;
+		}
+	});
+
+	console.log($scope.products);
 
 	$scope.rowClicked = function(index) {
+		$window.localStorage["productDetail"] = JSON.stringify($scope.products[index]);
 		$state.go('app.product-detail');
 	};
 

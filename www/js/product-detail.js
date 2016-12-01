@@ -1,8 +1,11 @@
 angular.module('starter.controllers')
 
-.controller('ProductDetailCtrl', ['$scope',function($scope) {
+.controller('ProductDetailCtrl', ['$scope', '$window', function($scope, $window) {
+
+	$scope.productDetails = JSON.parse($window.localStorage["productDetail"]);
 
 	$scope.openBrowser = function() {
-		cordova.InAppBrowser.open('http://www.castalia.com.mx/', '_blank', 'location=yes');
+		$window.ga.trackEvent('Button', 'Press', 'Producto');
+		cordova.InAppBrowser.open('https://pedidoscastalia.com/_login', '_blank', 'location=yes');
 	};
 }]);

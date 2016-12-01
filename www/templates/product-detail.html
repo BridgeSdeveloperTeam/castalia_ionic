@@ -1,14 +1,14 @@
-<ion-view view-title="Zapato Dama">
-	<ion-content>
-		<div class="row" ng-click="rowClicked($index)">
+<ion-view view-title="Detalle">
+	<ion-content class="item-list-container">
+		<div class="row">
 			<div class="col col-50" style="margin:auto">
-				<img src="img/boot.png" class="full-width-img">
+				<img ng-src="http://castaliaapp.com/imagenes/{{productDetails.imagen}}" class="full-width-img">
 			</div>
 			<div class="col col-50" style="margin:auto">
 				<div class="vertical-items" style="align-items:initial">
-					<h3>Bota dama</h2>
-					<p>$299.90</p>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+					<h3>{{productDetails.sku}}</h2>
+					<p>{{productDetails.precio}}</p>
+					<p>{{productDetails.descripcion}}</p>
 					<br>
 					
 			        <button type="submit" class="button button-margin button-block button-assertive button-round" ng-click="openBrowser()">Comprar</button>
