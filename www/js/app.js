@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.RESTModule', 'ionic-material', 'starter.CatalogIDModule'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.RESTModule', 'ionic-material', 'starter.CatalogIDModule', 'dcbImgFallback'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -42,6 +42,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.RESTModule',
 
   // note that you can also chain configs
   $ionicConfigProvider.backButton.text('').icon('ion-android-arrow-back').previousTitleText(false);
+  $ionicConfigProvider.navBar.alignTitle("center");
 })
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
@@ -64,6 +65,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.RESTModule',
   })
   .state('app.register', {
     url: '/registro',
+    cache:false,
     views: {
       'menuContent': {
         templateUrl: 'templates/register.html',
@@ -76,6 +78,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.RESTModule',
   })
   .state('app.register-member', {
     url: '/registro-socio',
+    cache:false,
     views: {
       'menuContent': {
         templateUrl: 'templates/register.html',
@@ -186,18 +189,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.RESTModule',
         controller: 'ProductsCtrl',
         resolve: { productList: ['$stateParams', 'RESTCatalogService', function($stateParams, RESTCatalogService) {
           return RESTCatalogService.getProductList($stateParams);
-          /*var products = [
-              {'imgSrc': 'img/boot.png', 'name': 'Bota dama', 'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'},
-              {'imgSrc': 'img/boot.png', 'name': 'Bota dama', 'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'},
-              {'imgSrc': 'img/boot.png', 'name': 'Bota dama', 'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'},
-              {'imgSrc': 'img/boot.png', 'name': 'Bota dama', 'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'},
-              {'imgSrc': 'img/boot.png', 'name': 'Bota dama', 'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'},
-              {'imgSrc': 'img/boot.png', 'name': 'Bota dama', 'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'},
-              {'imgSrc': 'img/boot.png', 'name': 'Bota dama', 'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'},
-              {'imgSrc': 'img/boot.png', 'name': 'Bota dama', 'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'},
-              {'imgSrc': 'img/boot.png', 'name': 'Bota dama', 'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'}
-          ];
-          return products;*/
+          
         } ] }
       }
     }
@@ -225,9 +217,11 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.RESTModule',
 
   .state('app.profile', {
     url: '/perfil',
+    cache:false,
     views: {
       'menuContent': {
-        templateUrl: 'templates/profile.html'
+        templateUrl: 'templates/profile.html',
+        controller: 'ProfileCtrl'
       }
     }
   })
@@ -235,4 +229,43 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.RESTModule',
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/login');
-});
+})
+
+.config(['$httpProvider', function($httpProvider) {
+  $httpProvider.interceptors.push(function($rootScope) {
+    return {
+      request: function(config) {
+        $rootScope.$broadcast('loading:show');
+        return config;
+      },
+      response: function(response) {
+        $rootScope.$broadcast('loading:hide');
+        return response;
+      },
+      requestError: function(reason) {
+        $rootScope.$broadcast('loading:hide');
+        return reason;
+      },
+      responseError: function(response) {
+        $rootScope.$broadcast('loading:hide');
+        return response;
+      }
+    };
+  });
+}])
+.run(["$rootScope", "$ionicLoading", function($rootScope, $ionicLoading) {
+  $rootScope.$on('loading:show', function() {
+    var options = { 
+      template: '<ion-spinner></ion-spinner>'
+    };
+    if(!ionic.Platform.isWebView()) {
+      options["noBackdrop"] = true;
+    }
+    $ionicLoading.show(options);
+  });
+
+  $rootScope.$on('loading:hide', function() {
+    $ionicLoading.hide();
+  });
+  
+}]);

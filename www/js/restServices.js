@@ -6,36 +6,41 @@ angular.module('starter.RESTModule', [])
 	function getUrl() {
 	    return REST_URL;
 	}
-  	
-   var transform = function(data){
-        return $.param(data);
-    }
 
   this.registerUser = function(userData) {
+    
 		return $http({
 			url: getUrl() + "/addUser?nombre="+userData.nombre+ "&domicilio="+userData.domicilio + "&cp="+userData.cp + 
               "&telefono=" + userData.telefono + "&email=" + userData.email + "&contra=" + userData.contra,
+      cache: false,
 			method: "GET",
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
+      headers: { 
+        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+        'Cache-Control' : 'no-cache'
+      }
 		});
-	}
+	};
 
   this.registerMember = function(userData) {
+    
     return $http({
-      url: getUrl() + "/socio?nombre="+userData.nombre+ "&domicilio="+userData.domicilio + "&cp="+userData.cp + 
-              "&telefono=" + userData.telefono + "&email=" + userData.email,
+      url: getUrl() + "/socio?nombre="+userData.nombre+ "&domicilio="+userData.domicilio + "&cp="+userData.cp + "&telefono=" + userData.telefono + "&email=" + userData.email,
+      cache: false,
       method: "GET",
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
+      headers: { 
+        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' ,
+        'Cache-Control' : 'no-cache'
+      }
     });
-  }
+  };
 
   this.registerSocial = function(userData) {
     return $http({
-      url: getUrl() + "/socio?nombre="+userData.nombre+ "&email=" + userData.email,
+      url: getUrl() + "/addUser?nombre="+userData.nombre+ "&email=" + userData.email,
       method: "GET",
       headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
     });
-  }
+  };
 
   this.loginUser = function(userData) {
     return $http({
@@ -43,7 +48,15 @@ angular.module('starter.RESTModule', [])
       method: "GET",
       headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
     });
-  }
+  };
+
+  this.forgotPassword = function(email) {
+    return $http({
+      url: getUrl() + "/recuperarContra/"+email,
+      method: "GET",
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
+    });
+  };
 }])
 
 .service('RESTCatalogService', ['$http', 'REST_URL',  function($http, REST_URL) {

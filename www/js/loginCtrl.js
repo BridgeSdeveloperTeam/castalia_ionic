@@ -1,7 +1,7 @@
 angular.module('starter.controllers')
 
-.controller('LoginCtrl', ['$scope', '$state', '$ionicHistory', 'RESTUserService', '$window',
-	function($scope, $state, $ionicHistory, RESTUserService, $window) {
+.controller('LoginCtrl', ['$scope', '$state', '$ionicHistory', 'RESTUserService', '$window', '$ionicPopup',
+	function($scope, $state, $ionicHistory, RESTUserService, $window, $ionicPopup) {
 
 	if($window.localStorage["userID"]) {
 		$ionicHistory.nextViewOptions({
@@ -18,7 +18,7 @@ angular.module('starter.controllers')
 	$scope.loginData = {};
 	// Perform the login action when the user submits the login form
 	$scope.doLogin = function(form) {
-		console.log('Doing login', $scope.loginData);
+		
 		if(form.$valid) {
 			RESTUserService.loginUser($scope.loginData)
 			.then(function(response){
@@ -28,6 +28,8 @@ angular.module('starter.controllers')
 					$scope.loginData = {};
 					$window.localStorage["userID"] = response.data[0][0].id;
 					$scope.goToLogin();
+				}else {
+					alert("Email o contraseña incorrectas.");
 				}
 				
 			});
@@ -37,6 +39,34 @@ angular.module('starter.controllers')
 
 	};
 
+	$scope.forgotPassword = function() {
+		$scope.emailData = {};
+
+		// An elaborate, custom popup
+		var myPopup = $ionicPopup.show({
+			template: '<input type="email" ng-model="emailData.email">',
+			title: 'Introduce tu email',
+			scope: $scope,
+			buttons: [
+			  { text: '<p style="text-size:12px;">Cancelar</p>' },
+			  {
+			    text: '<b style="text-size:12px;">Enviar</b>',
+			    type: 'button-assertive',
+			    onTap: function(e) {
+			    	RESTUserService.forgotPassword($scope.emailData.email)
+			    	.then(function(response){
+			    		if(response.status == 200) {
+			    			alert("La contraseña será enviada a tu correo en breve.");
+			    		}
+			    	});
+
+			      return;
+			    }
+			  }
+			]
+		});
+	};
+
 	$scope.goToLogin = function() {
 
 		$ionicHistory.nextViewOptions({
@@ -44,6 +74,15 @@ angular.module('starter.controllers')
 			disableBack:true
 		});
 		$state.go('app.landing');
+	};
+
+	$scope.goToCatalog = function() {
+
+		$ionicHistory.nextViewOptions({
+			historyRoot: true,
+			disableBack:true
+		});
+		$state.go('app.catalog');
 	};
 
 	$scope.facebookLogin = function() {
@@ -58,15 +97,15 @@ angular.module('starter.controllers')
 	                    
 	                    var userData = {
 	                    	"email": response_user.email,
-	                    	"nombre": response_user.firstName + " " + response_user.last_name
+	                    	"nombre": response_user.first_name + " " + response_user.last_name
 	                    };
+						$window.localStorage["nombre"] = userData.nombre;
+						$window.localStorage["email"] = userData.email;
 	                    RESTUserService.registerSocial(userData).then(function(response_register){
 	                    	
 	                    	if(response_register.status == 200) {
-	                    		
-	                    		$window.localStorage["userID"] = response_register.data[0][0].id;
-	              
 	                    		$scope.goToLogin();
+	                    		$window.localStorage["userID"] = response_register.data[0][0].id;
 	                    	}
 	                    });
 	                },
@@ -85,22 +124,22 @@ angular.module('starter.controllers')
 	$scope.googleLogin = function() {
 		window.plugins.googleplus.login(
 	    {
-	      'webClientId': '544114062620-gkm0hqgd00vg2m0mhtrtao05pmif4fjc.apps.googleusercontent.com', // optional clientId of your Web application from Credentials settings of your project - On Android, this MUST be included to get an idToken. On iOS, it is not required.
+
+	       // optional clientId of your Web application from Credentials settings of your project - On Android, this MUST be included to get an idToken. On iOS, it is not required.
 	    },
 	    function (obj) {
-	      console.log(JSON.stringify(obj)); // do something useful instead of alerting
 
 	        var userData = {
             	"email": obj.email,
             	"nombre": obj.displayName
             };
-
+            $window.localStorage["nombre"] = userData.nombre;
+			$window.localStorage["email"] = userData.email;
             RESTUserService.registerSocial(userData).then(function(response_register){
-            	
+
             	if(response_register.status == 200) {
-            		$window.localStorage["userID"] = response_register.data[0][0].id;
-      
             		$scope.goToLogin();
+            		$window.localStorage["userID"] = response_register.data[0][0].id;
             	}
             });
 	    },

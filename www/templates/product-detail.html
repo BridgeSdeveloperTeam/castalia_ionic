@@ -1,10 +1,13 @@
 <ion-view view-title="Detalle">
 	<ion-content class="item-list-container">
 		<div class="row">
-			<div class="col col-50" style="margin:auto">
-				<img ng-src="http://castaliaapp.com/imagenes/{{productDetails.imagen}}" class="full-width-img">
+			<div class="col" style="margin:auto">
+				<img ng-src="http://castaliaapp.com/imagenes/{{productDetails.imagen}}" fallback-src="{{'img/place_holder.png'}}" loading-src="{{'img/place_holder.png'}}" class="detail-img" ng-click="photoZoom()">
 			</div>
-			<div class="col col-50" style="margin:auto">
+
+		</div>
+		<div class="row">
+			<div class="col" style="margin:auto">
 				<div class="vertical-items" style="align-items:initial">
 					<h3>{{productDetails.sku}}</h2>
 					<p>{{productDetails.precio}}</p>

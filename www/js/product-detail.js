@@ -8,4 +8,8 @@ angular.module('starter.controllers')
 		$window.ga.trackEvent('Button', 'Press', 'Producto');
 		cordova.InAppBrowser.open('https://pedidoscastalia.com/_login', '_blank', 'location=yes');
 	};
+
+	$scope.photoZoom = function() {
+		cordova.InAppBrowser.open('http://castaliaapp.com/imagenes/'+$scope.productDetails.imagen, '_blank', 'location=no,enableViewportScale=true);
+	};
 }]);

@@ -15,8 +15,6 @@ angular.module('starter.controllers')
 		}
 	});
 
-	console.log($scope.products);
-
 	$scope.rowClicked = function(index) {
 		$window.localStorage["productDetail"] = JSON.stringify($scope.products[index]);
 		$state.go('app.product-detail');
