@@ -1,0 +1,12 @@
+{
+    "SystemConfiguration.framework": 2,
+    "CoreData.framework": 1,
+    "AdSupport.framework": 1,
+    "libz.dylib": 2,
+    "libsqlite3.dylib": 1,
+    "AddressBook.framework": 1,
+    "CoreText.framework": 1,
+    "SafariServices.framework": 1,
+    "Security.framework": 1,
+    "libz.tbd": 1
+}

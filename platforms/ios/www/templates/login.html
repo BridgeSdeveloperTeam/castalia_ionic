@@ -1,0 +1,44 @@
+<ion-view view-title="Inicio de sesión">
+  <ion-content>
+    <form name="loginForm" ng-submit="doLogin(loginForm)" novalidate>
+
+      <div class="form-container">
+        <img src="img/castalia_logo.png" style="max-width:100%;margin-top:5px;">
+
+        <div class="inline-container">
+          <img src="img/mail_icon.png" class="small-icon">
+          <input type="email" placeholder="Email" ng-model="loginData.email" required>
+        </div>
+
+        <div class="inline-container">
+          <img src="img/pass_icon.png" class="small-icon">
+          <input type="password" placeholder="Contraseña" ng-model="loginData.password" required>
+        </div>
+        </br>
+        <div class="button-container-padding">
+          <button type="submit" class="button button-margin button-block button-assertive button-round">Iniciar sesión</button>
+        </div>
+
+        <div class="center-text" style="margin:20px 0">
+          <p style="margin:0;">Olvidé mi contraseña</p>
+          <p class="assertive underline-text" ng-click="forgotPassword()">Recupérala</p>
+        </div>
+        <div class="button-container-padding" >
+          <button type="button" class="button button-block button-assertive button-round button-margin" ng-click="goToCatalog()">Invitado</button>
+        </div>  
+        </br>
+        <div class="inline-container">
+          <img src="img/facebook_logo.png" class="login-logo" ng-click="facebookLogin()"/>
+          <img src="img/google_logo.png" class="login-logo" ng-click="googleLogin()"/>
+        </div>
+        </br>
+        <div class="inline-container center-text">
+          <p style="margin-right:10px;">¿No tienes cuenta?</p>
+          <p class="assertive underline-text" ui-sref="app.register">Regístrate</p>
+        </div>
+
+      </div>
+
+    </form>
+  </ion-content>
+</ion-view>

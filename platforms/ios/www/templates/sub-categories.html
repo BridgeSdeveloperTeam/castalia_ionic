@@ -1,0 +1,16 @@
+<ion-view view-title="{{viewTitle}}">
+	<ion-content style="background-color:#e037A3">
+		<div class="landing-container">
+			<img ng-src="{{bannerImage}}" style="width:100%; margin-bottom:-5px;">
+
+			<div ng-repeat="item in categories">
+				<div class="row castalia-background menu-cell-small" style="margin-top:1px" ng-click="rowClicked($index)">
+				
+					<div class="col" style="position:relative">
+						<img ng-src="{{item.imgSrc}}" class="full-width-img absolute-position">
+					</div>
+				</div>
+			</div>
+		</div>
+	</ion-content>
+</ion-view>

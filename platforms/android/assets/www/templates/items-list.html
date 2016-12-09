@@ -1,0 +1,39 @@
+<ion-view view-title="{{viewTitle}}">
+	<ion-nav-buttons side="right">
+    	<button class="button button-icon button-clear"  ng-click="switchView()">
+    		<i class="icon ion-ios-list-outline" ng-hide="listView"></i>
+    		<i class="icon ion-grid" ng-show="listView"></i>
+    	</button>
+    </ion-nav-buttons>
+	<ion-content class="item-list-container">
+		
+		<div ng-if="listView">
+			<div ng-repeat="item in products">
+				<div class="row product-list" ng-click="rowClicked($index)">
+					<div class="col col-50" style="margin:auto">
+						<img ng-src="http://castaliaapp.com/imagenes/{{item.imagen}}" fallback-src="{{'img/place_holder.png'}}" loading-src="{{'img/place_holder.png'}}" class="full-width-img">
+					</div>
+					<div class="col col-50" style="margin:auto">
+						<div class="vertical-items" style="align-items:initial">
+							<h3>{{item.sku}}</h2>
+							<p>{{item.descripcion}}</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>	 
+	
+		<div ng-if="!listView">
+			<ion-item class="item-list" collection-repeat="item in products" item-width="50%" item-height="250px" ng-click="rowClicked($index)">
+			    
+			    <div class="product-list">
+			    	<img ng-src="http://castaliaapp.com/imagenes/{{item.imagen}}" fallback-src="{{'img/place_holder.png'}}" style="height:80%; width:100%;">
+			    	
+					<h3>{{item.sku}}</h2>
+					<p>{{item.descripcion}}</p>
+			    </div>
+			</ion-item>
+		</div>
+		
+	</ion-content>
+</ion-view>
