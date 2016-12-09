@@ -10,6 +10,6 @@ angular.module('starter.controllers')
 	};
 
 	$scope.photoZoom = function() {
-		cordova.InAppBrowser.open('http://castaliaapp.com/imagenes/'+$scope.productDetails.imagen, '_blank', 'location=no,enableViewportScale=true);
+		cordova.InAppBrowser.open('http://castaliaapp.com/imagenes/'+$scope.productDetails.imagen, '_blank', 'location=no,enableViewportScale=true');
 	};
 }]);
