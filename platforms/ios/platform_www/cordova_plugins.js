@@ -34,14 +34,6 @@ module.exports = [
         ]
     },
     {
-        "id": "cordova-plugin-googleplus.GooglePlus",
-        "file": "plugins/cordova-plugin-googleplus/www/GooglePlus.js",
-        "pluginId": "cordova-plugin-googleplus",
-        "clobbers": [
-            "window.plugins.googleplus"
-        ]
-    },
-    {
         "id": "cordova-plugin-inappbrowser.inappbrowser",
         "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
         "pluginId": "cordova-plugin-inappbrowser",
@@ -90,6 +82,14 @@ module.exports = [
         "clobbers": [
             "facebookConnectPlugin"
         ]
+    },
+    {
+        "id": "cordova-plugin-googleplus.GooglePlus",
+        "file": "plugins/cordova-plugin-googleplus/www/GooglePlus.js",
+        "pluginId": "cordova-plugin-googleplus",
+        "clobbers": [
+            "window.plugins.googleplus"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -98,14 +98,14 @@ module.exports.metadata =
     "cordova-plugin-console": "1.0.4",
     "cordova-plugin-device": "1.1.3",
     "cordova-plugin-google-analytics": "1.7.2",
-    "cordova-plugin-googleplus": "5.1.1",
     "cordova-plugin-inappbrowser": "1.5.0",
     "cordova-plugin-splashscreen": "4.0.0",
     "cordova-plugin-statusbar": "2.2.0",
     "cordova-plugin-whitelist": "1.3.0",
     "ionic-plugin-keyboard": "2.2.1",
     "com-sarriaroman-photoviewer": "1.1.10",
-    "cordova-plugin-facebook4": "1.7.4"
+    "cordova-plugin-facebook4": "1.7.4",
+    "cordova-plugin-googleplus": "5.1.1"
 };
 // BOTTOM OF METADATA
 });

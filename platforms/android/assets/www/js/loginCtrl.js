@@ -22,7 +22,6 @@ angular.module('starter.controllers')
 		if(form.$valid) {
 			RESTUserService.loginUser($scope.loginData)
 			.then(function(response){
-				
 				if(response.status == 200) {
 					form.$setPristine();
 					$scope.loginData = {};
@@ -105,7 +104,7 @@ angular.module('starter.controllers')
 	                    	
 	                    	if(response_register.status == 200) {
 	                    		$scope.goToLogin();
-	                    		$window.localStorage["userID"] = response_register.data[0].id;
+	                    		$window.localStorage["userID"] = response_register.data[0];
 	                    	}
 	                    });
 	                },
@@ -139,7 +138,7 @@ angular.module('starter.controllers')
 
             	if(response_register.status == 200) {
             		$scope.goToLogin();
-            		$window.localStorage["userID"] = response_register.data[0].id;
+            		$window.localStorage["userID"] = response_register.data[0];
             	}
             });
 	    },

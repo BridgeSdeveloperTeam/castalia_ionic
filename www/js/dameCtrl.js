@@ -6,7 +6,7 @@ angular.module('starter.controllers')
 	if(isSales) {
 		$scope.viewTitle = "Ofertas Dama"
 
-		$scope.bannerImage = 'img/products_image.png'
+		$scope.bannerImage = 'img/portada_dama.jpg'
 
 		$scope.categories =[{'imgSrc': 'img/castaliaDama/dama_01.png', 'name': 'Tacones'}, 
 						{'imgSrc': 'img/castaliaDama/dama_02.png', 'name': 'Plataformas'},
@@ -22,7 +22,7 @@ angular.module('starter.controllers')
 	}else {
 		$scope.viewTitle = "Castalia Dama"
 
-		$scope.bannerImage = 'img/products_image.png'
+		$scope.bannerImage = 'img/portada_dama.jpg'
 
 		$scope.categories =[{'imgSrc': 'img/castaliaDama/dama_01.png', 'name': 'Tacones'}, 
 						{'imgSrc': 'img/castaliaDama/dama_02.png', 'name': 'Plataformas'},

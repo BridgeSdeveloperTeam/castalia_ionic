@@ -235,11 +235,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.RESTModule',
   $httpProvider.interceptors.push(function($rootScope) {
     return {
       request: function(config) {
-        $rootScope.$broadcast('loading:show');
+        if(config.url.indexOf("http") !== -1) {
+          $rootScope.$broadcast('loading:show');
+        }
+        
         return config;
       },
       response: function(response) {
-        $rootScope.$broadcast('loading:hide');
+        if(response.config.url.indexOf("http") !== -1) {
+          $rootScope.$broadcast('loading:hide');
+        }
         return response;
       },
       requestError: function(reason) {
@@ -261,7 +266,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.RESTModule',
     if(!ionic.Platform.isWebView()) {
       options["noBackdrop"] = true;
     }
-    $ionicLoading.show(options);
+      $ionicLoading.show(options);
   });
 
   $rootScope.$on('loading:hide', function() {
