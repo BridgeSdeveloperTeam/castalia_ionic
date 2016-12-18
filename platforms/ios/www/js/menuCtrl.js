@@ -14,7 +14,7 @@ angular.module('starter.controllers', [])
 	   		$scope.showMenuButton = true;
 	   }
 
-	   if($window.localStorage["userID"]) {
+	   if($window.localStorage["userID"] && $window.localStorage["userID"] !== "undefined") {
 	   		$rootScope.isUser = true;
 	   		$rootScope.userName = $window.localStorage["nombre"];
 	   }else {
