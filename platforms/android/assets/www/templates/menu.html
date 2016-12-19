@@ -23,19 +23,19 @@
     </ion-header-bar>
     <ion-content>
       <ion-list>
-        <ion-item menu-close ng-click='goTo("app.profile")'>
+        <ion-item menu-close ng-click='goTo("app.profile")' ng-show="isUser">
           Perfil
         </ion-item>
-        <ion-item menu-close ng-click='goTo("app.landing")'>
+        <ion-item menu-close ng-click='goTo("app.landing")' ng-show="isUser">
           Menú
         </ion-item>
         <ion-item menu-close ui-sref="app.catalog">
           Catálogo
         </ion-item>
-        <ion-item menu-close ng-click='goTo("app.shopping")'>
+        <ion-item menu-close ng-click='goTo("app.shopping")' ng-show="isUser">
           Compras en línea
         </ion-item>
-        <ion-item menu-close ng-click='goTo("app.register-member")'>
+        <ion-item menu-close ng-click='goTo("app.register-member")' ng-show="isUser">
           Registro de socios
         </ion-item>
         <ion-item menu-close ui-sref="app.help">

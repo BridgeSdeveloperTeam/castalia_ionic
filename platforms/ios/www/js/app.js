@@ -214,17 +214,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.RESTModule',
       }
     }
   })
-
-  .state('app.profile', {
-    url: '/perfil',
-    cache:false,
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/profile.html',
-        controller: 'ProfileCtrl'
-      }
-    }
-  })
   ;
 
   // if none of the above states are matched, use this as the fallback
