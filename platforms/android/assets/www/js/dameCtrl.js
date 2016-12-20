@@ -14,7 +14,6 @@ angular.module('starter.controllers')
 						{'imgSrc': 'img/castaliaDama/dama_04.png', 'name': 'Teens'},
 						{'imgSrc': 'img/castaliaDama/dama_05.png', 'name': 'Flats'},
 						{'imgSrc': 'img/castaliaDama/dama_06.png', 'name': 'Urbano'},
-						{'imgSrc': 'img/castaliaDama/dama_07.png', 'name': 'Bolsas'},
 						{'imgSrc': 'img/castaliaDama/dama_08.png', 'name': 'Deportivo'},
 						{'imgSrc': 'img/castaliaDama/dama_09.png', 'name': 'Confort'},
 						{'imgSrc': 'img/castaliaDama/dama_10.png', 'name': 'Botas'}];
@@ -30,7 +29,6 @@ angular.module('starter.controllers')
 						{'imgSrc': 'img/castaliaDama/dama_04.png', 'name': 'Teens'},
 						{'imgSrc': 'img/castaliaDama/dama_05.png', 'name': 'Flats'},
 						{'imgSrc': 'img/castaliaDama/dama_06.png', 'name': 'Urbano'},
-						{'imgSrc': 'img/castaliaDama/dama_07.png', 'name': 'Bolsas'},
 						{'imgSrc': 'img/castaliaDama/dama_08.png', 'name': 'Deportivo'},
 						{'imgSrc': 'img/castaliaDama/dama_09.png', 'name': 'Confort'},
 						{'imgSrc': 'img/castaliaDama/dama_10.png', 'name': 'Botas'}];
