@@ -1,0 +1,47 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "com-sarriaroman-photoviewer": {
+            "PACKAGE_NAME": "com.bridgest.castalia"
+        },
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "com.bridgest.castalia"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "com.bridgest.castalia"
+        },
+        "cordova-plugin-facebook4": {
+            "APP_ID": "232903433801903",
+            "APP_NAME": "Castalia",
+            "PACKAGE_NAME": "com.bridgest.castalia"
+        },
+        "cordova-plugin-google-analytics": {
+            "PACKAGE_NAME": "com.bridgest.castalia"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "com.bridgest.castalia"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.bridgest.castalia"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "com.bridgest.castalia"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.bridgest.castalia"
+        },
+        "ionic-plugin-keyboard": {
+            "PACKAGE_NAME": "com.bridgest.castalia"
+        },
+        "cordova-plugin-googleplus": {
+            "PACKAGE_NAME": "com.bridgest.castalia"
+        }
+    },
+    "dependent_plugins": {}
+}
