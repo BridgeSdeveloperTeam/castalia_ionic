@@ -11,7 +11,7 @@ angular.module('starter.controllers')
 		if(isSales) {
 			return item.oferta == "1";
 		}else {
-			return true;
+			return item.oferta == "2";
 		}
 	});
 
