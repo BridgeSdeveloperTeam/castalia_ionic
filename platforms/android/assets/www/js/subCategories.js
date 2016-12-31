@@ -26,4 +26,10 @@ angular.module('starter.controllers')
 
 		
 	};
+
+	$scope.salesTrevo = function(page, conceptoID, lineaID) {
+
+		$window.localStorage["catalogoID"] = CatalogIDService.getCatalogIdForName("trevo");
+		$scope.goToPage(page, conceptoID, lineaID);
+	};
 }]);
