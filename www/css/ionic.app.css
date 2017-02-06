@@ -10025,3 +10025,6 @@ p {
   top: 0;
   bottom: 0;
   margin: auto; }
+
+.info-container {
+  padding: 30px 60px; }

@@ -10,7 +10,7 @@ angular.module('starter.RESTModule', [])
   this.registerUser = function(userData) {
     
 		return $http({
-			url: getUrl() + "/addUser?nombre="+userData.nombre+ "&domicilio="+userData.domicilio + "&cp="+userData.cp + 
+			url: getUrl() + "/addUser?nombre="+userData.nombre+ "&estado="+userData.estado + 
               "&telefono=" + userData.telefono + "&email=" + userData.email + "&contra=" + userData.contra,
       cache: false,
 			method: "GET",

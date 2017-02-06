@@ -1,18 +1,28 @@
 angular.module('starter.controllers')
 
-.controller('RegisterCtrl', ['$scope', 'RESTUserService', 'isMember', '$state', '$ionicHistory', '$window',
-	function($scope, RESTUserService, isMember, $state, $ionicHistory, $window) {
+.controller('RegisterCtrl', ['$scope', 'RESTUserService', 'isMember', '$state', '$ionicHistory', '$window', '$ionicPopup',
+	function($scope, RESTUserService, isMember, $state, $ionicHistory, $window, $ionicPopup) {
 
 	$scope.registerData = {};
 
 	$scope.isMember = isMember;
-	console.log("is member "+ isMember);
+
+	$scope.isRootView = ($ionicHistory.viewHistory().backView === null) ? true:false;  
+	console.log($ionicHistory.viewHistory());
 
 	if(isMember) {
 		$scope.title = "Registro De Socios";
 	}else {
 		$scope.title = "Registro";
 	}
+
+	$scope.goBack = function() {
+		$ionicHistory.nextViewOptions({
+			historyRoot: true,
+			disableBack:true
+		});
+		$state.go('app.login');
+	};
 
 	$scope.doRegister = function(form) {
 
@@ -23,14 +33,22 @@ angular.module('starter.controllers')
 				.then(function(response){
 					
 					if(response.status == 200) {
-						alert("Registro exitoso");
+						$ionicPopup.alert({
+					    	title: 'Tu Registro ha sido exitoso',
+					    	template: 'Recibirás un correo electrónico a la dirección que acabas de proporcionar para dar seguimiento a tu proceso.'
+					    });
+			
 						form.$setPristine();
 						$scope.registerData = {};
 					}
 					
 				}, function(error) {
-					console.log(error);
-					alert("Hubo un error en el registro");
+					
+					$ionicPopup.alert({
+				    	title: 'Error',
+				    	template: 'Hubo un error en el registro.'
+				    });
+				
 				});
 			}else {
 				
@@ -41,9 +59,9 @@ angular.module('starter.controllers')
 						
 						$window.localStorage["userID"] = response.data[0];
 						$window.localStorage["nombre"] = $scope.registerData.nombre;
-						$window.localStorage["domicilio"] = $scope.registerData.domicilio;
-						$window.localStorage["cp"] = $scope.registerData.cp;
-						$window.localStorage["telefono"] = $scope.registerData.telefono;
+						//$window.localStorage["estado"] = $scope.registerData.domicilio;
+						//$window.localStorage["cp"] = $scope.registerData.cp;
+						//$window.localStorage["telefono"] = $scope.registerData.telefono;
 						$window.localStorage["email"] = $scope.registerData.email;
 						$scope.registerData = {};
 						form.$setPristine();
@@ -53,13 +71,19 @@ angular.module('starter.controllers')
 					
 
 				}, function(error) {
-					console.log(error);
-					alert("Hubo un error en el registro");
+					$ionicPopup.alert({
+				    	title: 'Error',
+				    	template: 'Hubo un error en el registro.'
+				    });
 				});
 			}
 			
 		}else {
-			alert("Por favor, llena todos los campos");
+			$ionicPopup.alert({
+		    	title: 'Advertencia',
+		    	template: 'Por favor, llena todos los campos.'
+		    });
+			
 		}
 	}
 

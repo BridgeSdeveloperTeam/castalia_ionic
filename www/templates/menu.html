@@ -26,6 +26,9 @@
         <ion-item menu-close ng-click='goTo("app.landing")' ng-show="isUser">
           Menú
         </ion-item>
+        <ion-item menu-close ui-sref="app.castalia-info">
+          Beneficios
+        </ion-item>
         <ion-item menu-close ui-sref="app.catalog">
           Catálogo
         </ion-item>
@@ -34,6 +37,18 @@
         </ion-item>
         <ion-item menu-close ng-click='goTo("app.register-member")' ng-show="isUser">
           Registro de socios
+        </ion-item>
+        <ion-item class="item-icon-right" ng-click='pinkCatalogSelected()'  ng-show="isUser">
+          Catálogo Rosa
+          <i class="icon ion-checkmark" ng-show="catalogTypes.pink"></i>
+        </ion-item>
+        <ion-item class="item-icon-right" ng-click='redCatalogSelected()'  ng-show="isUser">
+          Catálogo Rojo
+          <i class="icon ion-checkmark" ng-show="catalogTypes.red"></i>
+        </ion-item>
+        <ion-item class="item-icon-right" ng-click='greenCatalogSelected()'  ng-show="isUser">
+          Catálogo Verde
+          <i class="icon ion-checkmark" ng-show="catalogTypes.green"></i>
         </ion-item>
         <ion-item menu-close ui-sref="app.help">
           Ayuda

@@ -29,6 +29,30 @@ angular.module('starter.controllers', [])
 		}
 	};
 
+	$scope.catalogTypes = {
+		red:false,
+		pink:false,
+		green:false
+	}
+
+	$scope.redCatalogSelected = function() {
+		$scope.catalogTypes.red = !$scope.catalogTypes.red;
+		$scope.catalogTypes.pink = false;
+		$scope.catalogTypes.green = false;
+	};
+
+	$scope.pinkCatalogSelected = function() {
+		$scope.catalogTypes.pink = !$scope.catalogTypes.pink;
+		$scope.catalogTypes.red = false;
+		$scope.catalogTypes.green = false;
+	};
+
+	$scope.greenCatalogSelected = function() {
+		$scope.catalogTypes.green = !$scope.catalogTypes.green;
+		$scope.catalogTypes.red = false;
+		$scope.catalogTypes.pink = false;
+	};
+
   	$scope.logout = function() {
   		$window.localStorage.removeItem("userID");
 		$window.localStorage.removeItem("nombre");
@@ -36,6 +60,7 @@ angular.module('starter.controllers', [])
 		$window.localStorage.removeItem("cp");
 		$window.localStorage.removeItem("telefono");
 		$window.localStorage.removeItem("email");
+
   		$ionicHistory.nextViewOptions({
 			historyRoot: true,
 			disableBack:true

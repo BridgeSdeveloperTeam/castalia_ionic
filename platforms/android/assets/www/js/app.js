@@ -11,7 +11,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.RESTModule',
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
     if (window.cordova && window.cordova.plugins.Keyboard) {
-      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false);
       cordova.plugins.Keyboard.disableScroll(true);
 
     }
@@ -182,15 +182,10 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.RESTModule',
   //Product List
   .state('app.product-list', {
     url: '/lista-productos/:idCatalogo/:idLinea/:idConcepto',
-    cache: false,
     views: {
       'menuContent': {
         templateUrl: 'templates/items-list.html',
-        controller: 'ProductsCtrl',
-        resolve: { productList: ['$stateParams', 'RESTCatalogService', function($stateParams, RESTCatalogService) {
-          return RESTCatalogService.getProductList($stateParams);
-          
-        } ] }
+        controller: 'ProductsCtrl'
       }
     }
   })
@@ -214,6 +209,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.RESTModule',
       }
     }
   })
+  .state('app.castalia-info', {
+    url: '/info',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/castalia-info.html',
+        controller: 'CastaliaInfoCtrl'
+      }
+    }
+  })
+
   ;
 
   // if none of the above states are matched, use this as the fallback

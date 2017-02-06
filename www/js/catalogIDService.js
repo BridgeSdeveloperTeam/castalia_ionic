@@ -108,4 +108,62 @@ angular.module('starter.CatalogIDModule', [])
 		return code;
 	} ;
 
+	this.getConceptNameForId = function(conceptId) {
+		var code;
+		switch(conceptId) {
+			case "1":
+				code = 'Tacones';
+				break;
+			case "2":
+				code = 'Plataformas';
+				break;
+			case "3":
+				code = 'Huaraches';
+				break;
+			case "4":
+				code = 'Teens';
+				break;
+			case "5":
+				code = 'Flats';
+				break;
+			case "6":
+				code = 'Botas';
+				break;
+			case "7":
+				code = 'Urbano';
+				break;
+			case "8":
+				code = 'Bolsas';
+				break;
+			case "9":
+				code = 'Deportivo';
+				break;
+			case "10":
+				code = 'Confort';
+				break;
+			case "11":
+				code = 'Caballero';
+				break;
+			case "12":
+				code = 'Joven';
+				break;
+			case "13":
+				code = 'Niño';
+				break;
+			case "14":
+				code = 'Niña';
+				break;
+			case "15":
+				code = 'Ropa';
+				break;
+			case "16":
+				code = 'Accesorios';
+				break;
+			default : 
+				code = 'Productos';
+				break;
+		}
+		return code;
+	};
+
 }]);

@@ -4,14 +4,24 @@
     		<i class="icon ion-ios-list-outline" ng-hide="listView"></i>
     		<i class="icon ion-grid" ng-show="listView"></i>
     	</button>
-    	<button class="button button-icon button-clear">
-          <img src="img/icono_castalia.png" style="width:85%; height:100%; margin-top:3px;" >
+    	<button class="button button-icon button-clear" ng-click="showSearchBar(true)">
+    		<i class="icon ion-ios-search-strong"></i>
         </button>
     </ion-nav-buttons>
-	<ion-content class="item-list-container">
-		
+
+    <ion-header-bar class="bar-assertive bar-subheader item-input-inset" ng-if="showSubheader">
+		<label class="item-input-wrapper">
+	    	<i class="icon ion-ios-search placeholder-icon"></i>
+	    	<input type="search" placeholder="Búsqueda" ng-model="search.query">
+	  	</label>
+	  	<button class="button button-clear button-icon" ng-click="showSearchBar(false)">
+	    	<i class="icon ion-ios-close-outline"></i>
+  		</button>
+	</ion-header-bar>
+
+	<ion-content class="item-list-container">	
 		<div ng-if="listView">
-			<div ng-repeat="item in products">
+			<div ng-repeat="item in products | searchProducts:search.query">
 				<div class="row product-list" ng-click="rowClicked($index)">
 					<div class="col col-50" style="margin:auto">
 						<img ng-src="http://castaliaapp.com/imagenes/{{item.imagen}}" fallback-src="{{'img/place_holder.png'}}" loading-src="{{'img/place_holder.png'}}" class="full-width-img">
@@ -27,7 +37,7 @@
 		</div>	 
 	
 		<div ng-if="!listView">
-			<ion-item class="item-list" collection-repeat="item in products" item-width="50%" item-height="250px" ng-click="rowClicked($index)">
+			<ion-item class="item-list" collection-repeat="item in products | searchProducts:search.query" item-width="50%" item-height="250px" ng-click="rowClicked($index)">
 			    
 			    <div class="product-list">
 			    	<img ng-src="http://castaliaapp.com/imagenes/{{item.imagen}}" fallback-src="{{'img/place_holder.png'}}" style="height:80%; width:100%;">
@@ -37,6 +47,5 @@
 			    </div>
 			</ion-item>
 		</div>
-		
 	</ion-content>
 </ion-view>

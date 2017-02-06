@@ -28,12 +28,19 @@ angular.module('starter.controllers')
 					$window.localStorage["userID"] = response.data[0][0].id;
 					$scope.goToLogin();
 				}else {
-					alert("Email o contraseña incorrectas.");
+					$ionicPopup.alert({
+				    	title: 'Error',
+				    	template: 'Email o contraseña incorrectas.'
+				    });
+					
 				}
 				
 			});
 		}else {
-			alert("Por favor, llena los campos vacíos");
+			$ionicPopup.alert({
+		    	title: 'Advertencia',
+		    	template: 'Por favor, llena los campos vacíos.'
+		    });
 		}
 
 	};
@@ -55,7 +62,10 @@ angular.module('starter.controllers')
 			    	RESTUserService.forgotPassword($scope.emailData.email)
 			    	.then(function(response){
 			    		if(response.status == 200) {
-			    			alert("La contraseña será enviada a tu correo en breve.");
+			    			$ionicPopup.alert({
+						    	title: 'Exito',
+						    	template: 'La contraseña será enviada a tu correo en breve.'
+						    });
 			    		}
 			    	});
 
@@ -72,7 +82,14 @@ angular.module('starter.controllers')
 			historyRoot: true,
 			disableBack:true
 		});
-		$state.go('app.landing');
+		
+		if($window.localStorage["tutorialShown"] && $window.localStorage["tutorialShown"] !== undefined) {
+			$state.go('app.landing');
+		}else {
+			$window.localStorage["tutorialShown"] = "true";
+			$state.go('app.castalia-info');
+			
+		}
 	};
 
 	$scope.goToCatalog = function() {
@@ -81,7 +98,9 @@ angular.module('starter.controllers')
 			historyRoot: true,
 			disableBack:true
 		});
-		$state.go('app.catalog');
+		$window.localStorage.removeItem("tutorialShown");
+		$state.go('app.castalia-info');
+		
 	};
 
 	$scope.facebookLogin = function() {
