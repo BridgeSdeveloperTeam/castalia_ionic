@@ -9965,6 +9965,14 @@ p {
   .menu-cell-small p {
     margin: 0; }
 
+.side-menu .item {
+  border: 1px solid #ddd !important; }
+
+.side-menu .item img {
+  top: 9px;
+  max-width: 35px;
+  max-height: 35px; }
+
 .landing-container {
   width: 100%;
   max-width: 500px !important;
@@ -10028,3 +10036,24 @@ p {
 
 .info-container {
   padding: 30px 60px; }
+
+.info-buttons-container {
+  padding: 30px; }
+
+.custom-info-button {
+  line-height: 1.3em;
+  font-size: 13px;
+  white-space: normal; }
+
+.list .item.item-accordion {
+  line-height: 38px;
+  padding-top: 0;
+  padding-bottom: 0;
+  transition: 0.09s all linear; }
+
+.list .item.item-accordion.ng-hide {
+  line-height: 0px; }
+
+.list .item.item-accordion.ng-hide-add,
+.list .item.item-accordion.ng-hide-remove {
+  display: block !important; }

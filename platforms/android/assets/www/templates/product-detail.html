@@ -10,8 +10,8 @@
 			<div class="col" style="margin:auto">
 				<div class="vertical-items" style="align-items:initial">
 					<h3>{{productDetails.sku}}</h2>
-					<p>{{productDetails.precio}}</p>
 					<p>{{productDetails.descripcion}}</p>
+					<p ng-show="showPrice">{{getPrice()}}</p>
 					<br>
 					
 			        <button type="submit" class="button button-margin button-block button-assertive button-round" ng-click="openBrowser()">Comprar</button>

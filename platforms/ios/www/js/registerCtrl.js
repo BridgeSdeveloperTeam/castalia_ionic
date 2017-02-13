@@ -59,9 +59,9 @@ angular.module('starter.controllers')
 						
 						$window.localStorage["userID"] = response.data[0];
 						$window.localStorage["nombre"] = $scope.registerData.nombre;
-						$window.localStorage["domicilio"] = $scope.registerData.domicilio;
-						$window.localStorage["cp"] = $scope.registerData.cp;
-						$window.localStorage["telefono"] = $scope.registerData.telefono;
+						//$window.localStorage["estado"] = $scope.registerData.domicilio;
+						//$window.localStorage["cp"] = $scope.registerData.cp;
+						//$window.localStorage["telefono"] = $scope.registerData.telefono;
 						$window.localStorage["email"] = $scope.registerData.email;
 						$scope.registerData = {};
 						form.$setPristine();

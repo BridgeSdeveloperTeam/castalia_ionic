@@ -11,7 +11,7 @@ angular.module('starter.controllers')
 		
 		if($ionicHistory.forwardView() === null) {
 			RESTCatalogService.getProductList($stateParams).then(function(productList){
-				
+				console.log(productList);
 				if(productList.data !== null ) {
 					$scope.products = productList.data[0].filter(function(item){
 						if(isSales) {
@@ -53,16 +53,19 @@ angular.module('starter.controllers')
   return function (items, query) {
     var filtered = [];
     var letterMatch = new RegExp(query, 'i');
-    for (var i = 0; i < items.length; i++) {
-      var item = items[i];
-      if (query) {
-        if (letterMatch.test(item.sku.substring(0, query.length))) {
-          filtered.push(item);
-        }
-      } else {
-        filtered.push(item);
-      }
+    if(items) {
+	    for (var i = 0; i < items.length; i++) {
+	    	var item = items[i];
+	     	if (query) {
+	        	if (letterMatch.test(item.sku.substring(0, query.length))) {
+	          		filtered.push(item);
+	        	}
+	      	} else {
+	        	filtered.push(item);
+	      	}
+	    }
     }
+
     return filtered;
   };
 });

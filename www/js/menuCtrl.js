@@ -29,28 +29,63 @@ angular.module('starter.controllers', [])
 		}
 	};
 
+	$scope.regularGoTo = function(stateName) {
+		$state.go(stateName);	
+	};
+
 	$scope.catalogTypes = {
 		red:false,
 		pink:false,
 		green:false
 	}
 
-	$scope.redCatalogSelected = function() {
-		$scope.catalogTypes.red = !$scope.catalogTypes.red;
-		$scope.catalogTypes.pink = false;
-		$scope.catalogTypes.green = false;
+	$scope.catalog = {
+		show:false
+	}
+
+	$window.localStorage["price"] = "0";
+
+	$scope.showGroup = function() {
+		$scope.catalog.show = !$scope.catalog.show;
 	};
 
 	$scope.pinkCatalogSelected = function() {
 		$scope.catalogTypes.pink = !$scope.catalogTypes.pink;
 		$scope.catalogTypes.red = false;
 		$scope.catalogTypes.green = false;
+		if($scope.catalogTypes.pink == true) {
+			$window.localStorage["price"] = "1";
+		}else {
+			$window.localStorage["price"] = "0";
+		}
+		
+		$scope.$broadcast('catalog-changed', { });
 	};
 
 	$scope.greenCatalogSelected = function() {
 		$scope.catalogTypes.green = !$scope.catalogTypes.green;
 		$scope.catalogTypes.red = false;
 		$scope.catalogTypes.pink = false;
+		
+		if($scope.catalogTypes.green == true) {
+			$window.localStorage["price"] = "2";
+		}else {
+			$window.localStorage["price"] = "0";
+		}
+		$scope.$broadcast('catalog-changed', { });
+	};
+
+	$scope.redCatalogSelected = function() {
+		$scope.catalogTypes.red = !$scope.catalogTypes.red;
+		$scope.catalogTypes.pink = false;
+		$scope.catalogTypes.green = false;
+		
+		if($scope.catalogTypes.red == true) {
+			$window.localStorage["price"] = "3";
+		}else {
+			$window.localStorage["price"] = "0";
+		}
+		$scope.$broadcast('catalog-changed', { });
 	};
 
   	$scope.logout = function() {

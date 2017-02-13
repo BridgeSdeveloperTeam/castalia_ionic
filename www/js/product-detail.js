@@ -5,6 +5,10 @@ angular.module('starter.controllers')
 
 	$scope.productDetails = JSON.parse($window.localStorage["productDetail"]);
 
+	$scope.selectedPrice = $window.localStorage["price"];
+	$scope.showPrice = ($scope.selectedPrice === "0") ? false:true;
+
+
 	$scope.openBrowser = function() {
 
 		$window.ga.trackEvent('Button', 'Press', 'Producto');
@@ -13,6 +17,26 @@ angular.module('starter.controllers')
 			cordova.InAppBrowser.open('https://pedidoscastalia.com/_login', '_blank', 'location=yes');
 		}else {
 			$state.go('app.register');
+		}
+		
+	};
+
+	$scope.$on('catalog-changed', function(event) {
+		
+		
+        $scope.selectedPrice = $window.localStorage["price"];
+        
+		$scope.showPrice = ($scope.selectedPrice === "0") ? false:true;
+		console.log("broadcasted");
+		console.log($scope.selectedPrice);
+	    // do what you want to do
+	});
+
+	$scope.getPrice = function() {
+		if($scope.productDetails["precio" + $scope.selectedPrice] === null) {
+			return "";
+		}else {
+			return "$" + $scope.productDetails["precio" + $scope.selectedPrice];
 		}
 		
 	};
