@@ -27,8 +27,6 @@ angular.module('starter.controllers')
         $scope.selectedPrice = $window.localStorage["price"];
         
 		$scope.showPrice = ($scope.selectedPrice === "0") ? false:true;
-		console.log("broadcasted");
-		console.log($scope.selectedPrice);
 	    // do what you want to do
 	});
 

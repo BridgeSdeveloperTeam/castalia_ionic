@@ -22,7 +22,7 @@ angular.module('starter.controllers')
 		if(form.$valid) {
 			RESTUserService.loginUser($scope.loginData)
 			.then(function(response){
-				if(response.status == 200) {
+				if(response.status == 200 && response.data[0].length>0) {
 					form.$setPristine();
 					$scope.loginData = {};
 					$window.localStorage["userID"] = response.data[0][0].id;

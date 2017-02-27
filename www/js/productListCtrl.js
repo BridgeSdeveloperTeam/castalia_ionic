@@ -10,8 +10,9 @@ angular.module('starter.controllers')
 	$scope.$on("$ionicView.beforeEnter", function(event, data){
 		
 		if($ionicHistory.forwardView() === null) {
+			var isSales = $window.localStorage["ofertas"] === "1";
 			RESTCatalogService.getProductList($stateParams).then(function(productList){
-				console.log(productList);
+				//console.log(productList);
 				if(productList.data !== null ) {
 					$scope.products = productList.data[0].filter(function(item){
 						if(isSales) {
@@ -26,12 +27,35 @@ angular.module('starter.controllers')
 		}
 
 		$scope.viewTitle = CatalogIDService.getConceptNameForId($stateParams.idConcepto);
-	    var isSales = $window.localStorage["ofertas"] === "1";
+	    
 		
 	});
 
-	$scope.rowClicked = function(index) {
-		$window.localStorage["productDetail"] = JSON.stringify($scope.products[index]);
+	$scope.selectedPrice = $window.localStorage["price"];
+	$scope.showPrice = ($scope.selectedPrice === "0") ? false:true;
+
+	$scope.$on('catalog-changed', function(event) {
+		
+		
+        $scope.selectedPrice = $window.localStorage["price"];
+        
+		$scope.showPrice = ($scope.selectedPrice === "0") ? false:true;
+	    // do what you want to do
+	});
+
+	$scope.getPrice = function(item) {
+		
+		if(item["precio" + $scope.selectedPrice] === null) {
+			return "";
+		}else {
+
+			return "$" + item["precio" + $scope.selectedPrice];
+		}
+		
+	};
+
+	$scope.rowClicked = function(item) {
+		$window.localStorage["productDetail"] = JSON.stringify(item);
 		$state.go('app.product-detail');
 	};
 

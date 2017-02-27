@@ -37,18 +37,22 @@
         </ion-item>
         <ion-item ng-show="isUser" class="item-avatar" ng-click="showGroup()">
           <img src="img/sidemenu/icon-price.png">
-          Precios
+          Lista de Precios
         </ion-item>
-        <ion-item class="item-icon-right" ng-click='pinkCatalogSelected()' style="padding-left:60px;" ng-if="isUser" ng-show="catalog.show">
-          Catálogo Rosa
+        <ion-item class="item-icon-right" ng-click='noPriceSelected()' style="padding-left:80px;" ng-if="isUser" ng-show="catalog.show">
+          Sin precio
+          <i class="icon ion-checkmark" ng-show="catalogTypes.noPrice"></i>
+        </ion-item>
+        <ion-item class="item-icon-right" ng-click='pinkCatalogSelected()' style="padding-left:80px;" ng-if="isUser" ng-show="catalog.show">
+          Lista Rosa
           <i class="icon ion-checkmark" ng-show="catalogTypes.pink"></i>
         </ion-item>
-        <ion-item class="item-icon-right" ng-click='greenCatalogSelected()'style="padding-left:60px;" ng-if="isUser" ng-show="catalog.show">
-          Catálogo Verde
+        <ion-item class="item-icon-right" ng-click='greenCatalogSelected()'style="padding-left:80px;" ng-if="isUser" ng-show="catalog.show">
+          Lista Verde
           <i class="icon ion-checkmark" ng-show="catalogTypes.green"></i>
         </ion-item>
-        <ion-item class="item-icon-right" ng-click='redCatalogSelected()' style="padding-left:60px;" ng-if="isUser" ng-show="catalog.show">
-          Catálogo Rojo
+        <ion-item class="item-icon-right" ng-click='redCatalogSelected()' style="padding-left:80px;" ng-if="isUser" ng-show="catalog.show">
+          Lista Rojo
           <i class="icon ion-checkmark" ng-show="catalogTypes.red"></i>
         </ion-item>
         <ion-item menu-close class="item-avatar" ng-click='regularGoTo("app.shopping")' ng-show="isUser">
@@ -64,7 +68,7 @@
           Ayuda
         </ion-item>
         <ion-item menu-close class="item-avatar" ng-click="logout()">
-          <img src="img/sidemenu/icon-menu.png">
+          <img src="img/sidemenu/icon-logout.png">
           <div ng-show="isUser">Cerrar sesión</div>
           <div ng-hide="isUser">Inicio</div>
         </ion-item>

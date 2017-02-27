@@ -1,4 +1,5 @@
-<ion-view view-title="{{viewTitle}}">
+<ion-view>
+	<ion-nav-title>{{viewTitle}}</ion-nav-title>
 	<ion-nav-buttons side="right">
     	<button class="button button-icon button-clear"  ng-click="switchView()">
     		<i class="icon ion-ios-list-outline" ng-hide="listView"></i>
@@ -22,7 +23,7 @@
 	<ion-content class="item-list-container">	
 		<div ng-if="listView">
 			<div ng-repeat="item in products | searchProducts:search.query">
-				<div class="row product-list" ng-click="rowClicked($index)">
+				<div class="row product-list" ng-click="rowClicked(item)">
 					<div class="col col-50" style="margin:auto">
 						<img ng-src="http://castaliaapp.com/imagenes/{{item.imagen}}" fallback-src="{{'img/place_holder.png'}}" loading-src="{{'img/place_holder.png'}}" class="full-width-img">
 					</div>
@@ -30,6 +31,7 @@
 						<div class="vertical-items" style="align-items:initial">
 							<h3>{{item.sku}}</h2>
 							<p>{{item.descripcion}}</p>
+							<p ng-show="showPrice && getPrice(item)!=''" style="font-size:24px">{{getPrice(item)}}</p>
 						</div>
 					</div>
 				</div>
@@ -37,13 +39,14 @@
 		</div>	 
 	
 		<div ng-if="!listView">
-			<ion-item class="item-list" collection-repeat="item in products | searchProducts:search.query" item-width="50%" item-height="250px" ng-click="rowClicked($index)">
+			<ion-item class="item-list" collection-repeat="item in products | searchProducts:search.query" item-width="50%" item-height="270px" ng-click="rowClicked(item)" style="padding:5px;">
 			    
 			    <div class="product-list">
-			    	<img ng-src="http://castaliaapp.com/imagenes/{{item.imagen}}" fallback-src="{{'img/place_holder.png'}}" style="height:80%; width:100%;">
+			    	<img ng-src="http://castaliaapp.com/imagenes/{{item.imagen}}" fallback-src="{{'img/place_holder.png'}}" style=" width:100%; max-width:160px">
 			    	
 					<h3>{{item.sku}}</h2>
-					<p>{{item.descripcion}}</p>
+					<p style="white-space:normal">{{item.descripcion}}</p>
+					<p ng-show="showPrice && getPrice(item)!=''" style="font-size:24px">{{getPrice(item)}}</p>
 			    </div>
 			</ion-item>
 		</div>

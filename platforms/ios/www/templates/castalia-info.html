@@ -1,13 +1,14 @@
 <ion-view view-title="Beneficios">
   <ion-content has-bouncing="false">
   	<div ng-repeat="item in [1,2,3,4,5,6,7,8]">
-  		<img ng-src="img/benefits/{{item}}.png" class="only-width-img">
+  		<img ng-src="img/benefits/{{item}}.jpg" class="only-width-img">
   	</div>
    	
    	<div class="info-buttons-container">
    		<button type="button" class="button button-block button-assertive button-round button-margin custom-info-button" ng-hide="isUser" ng-click="registerButtonTapped()">COMIENZA TU PROPIO NEGOCIO</button>
    		<br>
-   		<button type="button" class="button button-block button-assertive button-round button-margin" ng-click="continueButtonTapped()">CONTINUAR</button>
+      <button type="button" class="button button-block button-assertive button-round button-margin" ng-hide="isUser" ng-click="continueButtonTapped()">VER CATÁLOGOS</button>
+      <button type="button" class="button button-block button-assertive button-round button-margin" ng-show="isUser" ng-click="continueButtonTapped()">CONTINUAR</button>
    	</div>
   </ion-content>
 </ion-view>

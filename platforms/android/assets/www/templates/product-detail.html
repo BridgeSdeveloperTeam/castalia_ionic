@@ -9,9 +9,9 @@
 		<div class="row">
 			<div class="col" style="margin:auto">
 				<div class="vertical-items" style="align-items:initial">
-					<h3>{{productDetails.sku}}</h2>
+					<h3>{{productDetails.sku}}</h3>
 					<p>{{productDetails.descripcion}}</p>
-					<p ng-show="showPrice">{{getPrice()}}</p>
+					<p ng-show="showPrice && getPrice()!=''" style="font-size:24px">{{getPrice()}}</p>
 					<br>
 					
 			        <button type="submit" class="button button-margin button-block button-assertive button-round" ng-click="openBrowser()">Comprar</button>

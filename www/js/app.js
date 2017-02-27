@@ -211,6 +211,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.RESTModule',
   })
   .state('app.castalia-info', {
     url: '/info',
+    cache: false,
     views: {
       'menuContent': {
         templateUrl: 'templates/castalia-info.html',

@@ -36,7 +36,8 @@ angular.module('starter.controllers', [])
 	$scope.catalogTypes = {
 		red:false,
 		pink:false,
-		green:false
+		green:false,
+		noPrice:true
 	}
 
 	$scope.catalog = {
@@ -49,42 +50,43 @@ angular.module('starter.controllers', [])
 		$scope.catalog.show = !$scope.catalog.show;
 	};
 
-	$scope.pinkCatalogSelected = function() {
-		$scope.catalogTypes.pink = !$scope.catalogTypes.pink;
+	$scope.noPriceSelected = function() {
+		$scope.catalogTypes.noPrice = true;
+		$scope.catalogTypes.pink = false;
 		$scope.catalogTypes.red = false;
 		$scope.catalogTypes.green = false;
-		if($scope.catalogTypes.pink == true) {
-			$window.localStorage["price"] = "1";
-		}else {
-			$window.localStorage["price"] = "0";
-		}
+		$window.localStorage["price"] = "0";
+		
+		$scope.$broadcast('catalog-changed', { });
+	};
+
+	$scope.pinkCatalogSelected = function() {
+		$scope.catalogTypes.pink = true;
+		$scope.catalogTypes.red = false;
+		$scope.catalogTypes.green = false;
+		$scope.catalogTypes.noPrice = false;
+		$window.localStorage["price"] = "1";
 		
 		$scope.$broadcast('catalog-changed', { });
 	};
 
 	$scope.greenCatalogSelected = function() {
-		$scope.catalogTypes.green = !$scope.catalogTypes.green;
+		$scope.catalogTypes.green = true;
 		$scope.catalogTypes.red = false;
 		$scope.catalogTypes.pink = false;
-		
-		if($scope.catalogTypes.green == true) {
-			$window.localStorage["price"] = "2";
-		}else {
-			$window.localStorage["price"] = "0";
-		}
+		$scope.catalogTypes.noPrice = false;
+		$window.localStorage["price"] = "2";
+
 		$scope.$broadcast('catalog-changed', { });
 	};
 
 	$scope.redCatalogSelected = function() {
-		$scope.catalogTypes.red = !$scope.catalogTypes.red;
+		$scope.catalogTypes.red = true;
 		$scope.catalogTypes.pink = false;
 		$scope.catalogTypes.green = false;
+		$scope.catalogTypes.noPrice = false;
+		$window.localStorage["price"] = "3";
 		
-		if($scope.catalogTypes.red == true) {
-			$window.localStorage["price"] = "3";
-		}else {
-			$window.localStorage["price"] = "0";
-		}
 		$scope.$broadcast('catalog-changed', { });
 	};
 
