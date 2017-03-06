@@ -5,8 +5,12 @@ angular.module('starter.controllers')
 
 	$scope.productDetails = JSON.parse($window.localStorage["productDetail"]);
 
+	$scope.isSales = $window.localStorage["ofertas"] === "1";
 	$scope.selectedPrice = $window.localStorage["price"];
 	$scope.showPrice = ($scope.selectedPrice === "0") ? false:true;
+	if(parseInt($scope.selectedPrice) > 0 && $scope.isSales === true) {
+		$scope.selectedPrice = "1";
+	}
 
 
 	$scope.openBrowser = function() {
@@ -27,15 +31,27 @@ angular.module('starter.controllers')
         $scope.selectedPrice = $window.localStorage["price"];
         
 		$scope.showPrice = ($scope.selectedPrice === "0") ? false:true;
+		if(parseInt($scope.selectedPrice) > 0 && $scope.isSales === true) {
+			$scope.selectedPrice = "1";
+		}
 	    // do what you want to do
 	});
 
 	$scope.getPrice = function() {
-		if($scope.productDetails["precio" + $scope.selectedPrice] === null) {
-			return "";
+		if($scope.isSales === true) {
+			if($scope.productDetails["precio"] === null) {
+				return "";
+			}else {
+				return  "$" + $scope.productDetails["precio"];
+			}
 		}else {
-			return "$" + $scope.productDetails["precio" + $scope.selectedPrice];
+			if($scope.productDetails["precio" + $scope.selectedPrice] === null) {
+				return "";
+			}else {
+				return "$" + $scope.productDetails["precio" + $scope.selectedPrice];
+			}
 		}
+		
 		
 	};
 

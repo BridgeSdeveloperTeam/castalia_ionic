@@ -37,10 +37,10 @@
         </ion-item>
         <ion-item ng-show="isUser" class="item-avatar" ng-click="showGroup()">
           <img src="img/sidemenu/icon-price.png">
-          Lista de Precios
+          Listas de Precios
         </ion-item>
         <ion-item class="item-icon-right" ng-click='noPriceSelected()' style="padding-left:80px;" ng-if="isUser" ng-show="catalog.show">
-          Sin precio
+          Sin Precio
           <i class="icon ion-checkmark" ng-show="catalogTypes.noPrice"></i>
         </ion-item>
         <ion-item class="item-icon-right" ng-click='pinkCatalogSelected()' style="padding-left:80px;" ng-if="isUser" ng-show="catalog.show">
@@ -52,7 +52,7 @@
           <i class="icon ion-checkmark" ng-show="catalogTypes.green"></i>
         </ion-item>
         <ion-item class="item-icon-right" ng-click='redCatalogSelected()' style="padding-left:80px;" ng-if="isUser" ng-show="catalog.show">
-          Lista Rojo
+          Lista Roja
           <i class="icon ion-checkmark" ng-show="catalogTypes.red"></i>
         </ion-item>
         <ion-item menu-close class="item-avatar" ng-click='regularGoTo("app.shopping")' ng-show="isUser">
