@@ -8,7 +8,6 @@ angular.module('starter.controllers')
 	$scope.isMember = isMember;
 
 	$scope.isRootView = ($ionicHistory.viewHistory().backView === null) ? true:false;  
-	console.log($ionicHistory.viewHistory());
 
 	if(isMember) {
 		$scope.title = "Registro De Socios";
@@ -35,7 +34,7 @@ angular.module('starter.controllers')
 					if(response.status == 200) {
 						$ionicPopup.alert({
 					    	title: 'Tu Registro ha sido exitoso',
-					    	template: 'Recibirás un correo electrónico a la dirección que acabas de proporcionar para dar seguimiento a tu proceso.'
+					    	template: 'Tú afiliación como socio está en proceso.'
 					    });
 			
 						form.$setPristine();
